@@ -243,12 +243,12 @@ contract LiquidationOperator is IUniswapV2Callee {
 
         uint256 bal_wbtc = wbtc_pool.balanceOf(me);
         wbtc_pool.transfer(address(wbtc_weth_pool), bal_wbtc);
-        uint256 WETH_amountOut = getAmountOut(
+        uint256 WETH_out = getAmountOut(
             bal_wbtc,
             reserve_WBTC_PoolB,
             reserve_WETH_PoolB
         );
-        wbtc_weth_pool.swap(0, WETH_amountOut, me, "");
+        wbtc_weth_pool.swap(0, WETH_out, me, "");
         uint256 repay = getAmountIn(
             debt_repay,
             reserve_WETH_PoolA,
